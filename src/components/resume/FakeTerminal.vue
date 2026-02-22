@@ -27,7 +27,7 @@
             terminalControl.mini ? 'h-0 px-4' : 'p-4',
             {
                 'h-full': !terminalControl.mini && terminalControl.max,
-                'h-128': !terminalControl.mini && !terminalControl.max
+                'h-[65vh]': !terminalControl.mini && !terminalControl.max
             }
         ]" ref="terminalBody" @click="focusInput">
             <div class="mb-4">

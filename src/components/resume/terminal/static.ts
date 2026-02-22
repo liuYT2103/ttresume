@@ -10,5 +10,8 @@ export const whoami = [
 
 export const contact = [
     'GitHub:\t<a class="text-amber-300" href="https://github.com/liuYT2103" target="_blank">github.com/liuYT2103</a>',
-    'Email:\tjackplease@163.com ruanleizero@gmail.com'
+    'Email:\tjackplease@163.com / ruanleizero@gmail.com',
+    'QQ: 791069815',
+    'wechat: ruanleizero',
+    '<span class="text-amber-300 font-bold">Salary Negotiable</span>'
 ].join('\n')
