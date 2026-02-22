@@ -3,6 +3,7 @@
 基于 Vue 3 和 TypeScript 开发的网页端交互式简历，模拟命令行界面。访问者可通过输入终端命令查看个人信息、技能栈和项目经验。
 
 ## 预览
+[查看简历](https://resume.atnn.top/)
 
 !["img"](./docs/terminal.png)
 
