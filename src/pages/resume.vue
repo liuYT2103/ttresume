@@ -1,6 +1,9 @@
 <template>
     <StablePage>
-        <div class="w-full text-center text-6xl py-5">{{ t("RESUME_TITLE") }}</div>
+        <div class="w-full text-center text-6xl py-5 flex flex-col items-center gap-1 md:flex-row md:gap-0 md:justify-center">
+            <div class="">{{ t("RESUME_TITLE_1") }}</div>
+            <div class="">{{ t("RESUME_TITLE_2") }}</div>
+        </div>
         <div class="w-full flex justify-center">
             <FakeTerminal/>
         </div>

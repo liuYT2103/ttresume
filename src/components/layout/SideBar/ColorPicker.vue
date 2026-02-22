@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-2 p-1.5">
+    <div class="flex flex-row md:flex-col gap-2 p-1.5">
         <div class="size-5 rounded-full opacity-65 hover:opacity-100"
             :style="{
                 backgroundColor: theme.colorStr

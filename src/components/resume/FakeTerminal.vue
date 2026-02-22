@@ -46,7 +46,12 @@
 
             <div class="flex items-center gap-2">
                 <span class="text-green-400 font-bold">guest@liuyutao:~$</span>
-                <input ref="commandInput" type="text" v-model="currentCommand" @keyup.enter="handleCommand"
+                <input ref="commandInput" 
+                    type="text" 
+                    v-model="currentCommand" 
+                    @keyup.enter="handleCommand"
+                    @keydown.up.prevent="handleArrowUp"    
+                    @keydown.down.prevent="handleArrowDown"
                     class="flex-1 bg-transparent outline-none border-none text-gray-100 placeholder-gray-600"
                     spellcheck="false" autofocus autocomplete="off">
             </div>
@@ -62,8 +67,8 @@ import {
     MinusSignSquareIcon
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/vue';
-import { ref, nextTick } from 'vue';
-import { cmdLib } from './terminal/configuration';
+import { ref, nextTick, onMounted, onUnmounted } from 'vue';
+import { cmdLib } from './terminal/config';
 import { useSystem } from '@/stores/system';
 
 interface TerminalHistory {
@@ -71,36 +76,36 @@ interface TerminalHistory {
     result: string;
 }
 
-// 状态管理
 const commandHistory: string[] = []
 const history = ref<TerminalHistory[]>([]);
 const currentCommand = ref('');
 const terminalBody = ref<HTMLElement | null>(null);
 const commandInput = ref<HTMLInputElement | null>(null);
-
-const systemStore = useSystem()
-
-const { terminalControl } = systemStore
-
-const focusInput = () => {
-    commandInput.value?.focus();
+const { 
+    terminalControl,
+    terminalToggleSize,
+    terminalToggleFullScreen,
+    closeTerminal
+} = useSystem()
+const historyIndex = ref<number>(0)
+const handleArrowUp = () => {
+    if (commandHistory.length === 0) return;
+    if (historyIndex.value > 0) {
+        historyIndex.value--;
+        currentCommand.value = commandHistory[historyIndex.value] || '';
+    }
 };
-
-const terminalToggleSize = () => {
-    if (terminalControl.max) return
-    terminalControl.mini = !terminalControl.mini
-}
-
-const terminalToggleFullScreen = () => {
-    terminalControl.max = !terminalControl.max
-    terminalControl.mini = false
-}
-
-const closeTerminal = () => {
-    terminalControl.max = false
-    terminalControl.mini = false
-    terminalControl.close = !terminalControl.close
-}
+const handleArrowDown = () => {
+    if (commandHistory.length === 0) return;
+    if (historyIndex.value < commandHistory.length - 1) {
+        historyIndex.value++;
+        currentCommand.value = commandHistory[historyIndex.value] || '';
+    } else if (historyIndex.value === commandHistory.length - 1) {
+        historyIndex.value++;
+        currentCommand.value = '';
+    }
+};
+const focusInput = () => commandInput.value?.focus();
 
 const scrollToBottom = async () => {
     await nextTick();
@@ -129,19 +134,20 @@ const handleCommand = () => {
             default: output = handler.output(cmdarr)
         }
     }
-
+    if (commandHistory[commandHistory.length - 1] !== cmd) {
+        commandHistory.push(cmd);
+    }
+    historyIndex.value = commandHistory.length;
     history.value.push({
         command: cmd,
         result: output
     });
-    commandHistory.push(cmd)
     currentCommand.value = '';
     scrollToBottom();
 };
 </script>
 
 <style scoped>
-/* 隐藏原生滚动条，让它看起来更干净（可选） */
 ::-webkit-scrollbar {
     width: 8px;
 }
