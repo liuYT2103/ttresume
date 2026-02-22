@@ -1,0 +1,54 @@
+@theme {
+    --color-theme-bg: var(--background);
+    --color-theme-bg-dark: var(--background-dark);
+    --color-theme-bg-anime1: var(--background-anime1);
+    --color-theme-bg-anime2: var(--background-anime2);
+    --color-theme-bg-anime3: var(--background-anime3);
+    --color-theme-card: var(--card-bg-1);
+    --color-theme-card-hovered: var(--card-bg-1-hovered);
+    --color-theme-tx: var(--text-color-1);
+}
+
+:root {
+    --background: oklch(23% 0.06 144);
+    --background-dark: oklch(5% 0.06 144);
+    --background-anime1: oklch(34% 0.1 224);
+    --background-anime2: oklch(34% 0.1 344);
+    --background-anime3: oklch(34% 0.1 274);
+    --card-bg-1: oklch(30% 0.06 144);
+    --card-bg-1-hovered: oklch(38% 0.06 144);
+    --text-color-1: oklch(95% 0.06 144);
+}
+
+.pink {
+    --background: oklch(23% 0.06 350);
+    --background-dark: oklch(5% 0.06 350);
+    --background-anime1: oklch(34% 0.1 50);
+    --background-anime2: oklch(34% 0.1 190);
+    --background-anime3: oklch(34% 0.1 120);
+    --card-bg-1: oklch(30% 0.06 350);
+    --card-bg-1-hovered: oklch(38% 0.06 350);
+    --text-color-1: oklch(95% 0.06 350);
+}
+
+.gary {
+    --background: oklch(23% 0 0);
+    --background-dark: oklch(5% 0 0);
+    --background-anime1: oklch(20% 0 0);
+    --background-anime2: oklch(34% 0 0);
+    --background-anime3: oklch(45% 0 0);
+    --card-bg-1: oklch(30% 0 0);
+    --card-bg-1-hovered: oklch(38% 0 0);
+    --text-color-1: oklch(95% 0 0);
+}
+
+.yellow {
+    --background: oklch(23% 0.06 80);
+    --background-dark: oklch(5% 0.06 80);
+    --background-anime1: oklch(34% 0.1 160);
+    --background-anime2: oklch(34% 0.1 280);
+    --background-anime3: oklch(34% 0.1 210);
+    --card-bg-1: oklch(30% 0.06 80);
+    --card-bg-1-hovered: oklch(38% 0.06 80);
+    --text-color-1: oklch(95% 0.06 80);
+}

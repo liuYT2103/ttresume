@@ -1,0 +1,1 @@
+export type HugeiconType = Record<string, any>[];
